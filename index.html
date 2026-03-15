@@ -3,14 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenue</title>
+  <title>Modification Neon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050816;
+      --panel: rgba(10, 15, 31, 0.82);
+      --text: #eef3ff;
+      --muted: #b9c5eb;
+      --blue: #31a8ff;
+      --pink: #ff4fd8;
+      --line: rgba(123, 163, 255, 0.2);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(49, 168, 255, 0.28), transparent 26%),
+        radial-gradient(circle at 82% 18%, rgba(255, 79, 216, 0.22), transparent 24%),
+        radial-gradient(circle at 50% 78%, rgba(99, 102, 241, 0.16), transparent 30%),
+        linear-gradient(180deg, #02040c 0%, #050816 48%, #0a1020 100%);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      opacity: 0.48;
+    }
+
+    body::before {
+      top: -120px;
+      left: -80px;
+      background: rgba(49, 168, 255, 0.34);
+    }
+
+    body::after {
+      right: -90px;
+      bottom: -120px;
+      background: rgba(255, 79, 216, 0.28);
+    }
+
+    .frame {
+      position: relative;
+      width: min(960px, calc(100% - 32px));
+      padding: 28px;
+    }
+
+    .panel {
+      position: relative;
+      padding: clamp(28px, 6vw, 64px);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(11, 17, 34, 0.92), rgba(7, 11, 24, 0.84));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      isolation: isolate;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(49, 168, 255, 0.9), rgba(255, 79, 216, 0.8));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.65;
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(123, 163, 255, 0.14);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      box-shadow:
+        0 0 12px rgba(49, 168, 255, 0.85),
+        0 0 18px rgba(255, 79, 216, 0.65);
+    }
+
+    h1 {
+      margin: 28px 0 16px;
+      font-size: clamp(3rem, 10vw, 6.6rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      text-shadow:
+        0 0 18px rgba(49, 168, 255, 0.32),
+        0 0 36px rgba(255, 79, 216, 0.18);
+    }
+
+    .gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #8fd6ff 42%, #ff8ef0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 34ch;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.26rem);
+      line-height: 1.7;
+    }
+
+    .accent-line {
+      width: min(240px, 46vw);
+      height: 4px;
+      margin: 28px 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--pink));
+      box-shadow:
+        0 0 18px rgba(49, 168, 255, 0.46),
+        0 0 24px rgba(255, 79, 216, 0.3);
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      color: rgba(185, 197, 235, 0.82);
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 720px) {
+      .frame {
+        padding: 16px;
+      }
+
+      .panel {
+        border-radius: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Mon premier site</h1>
-  </header>
-  <main>
-    <p>Ceci est une première page</p>
+  <main class="frame">
+    <section class="panel">
+      <div class="eyebrow">Style moderne</div>
+      <h1><span class="gradient">Ceci est la modification</span></h1>
+      <div class="accent-line" aria-hidden="true"></div>
+      <p class="lead">
+        Une version repensee en noir, bleu neon et rose neon, avec une presentation plus
+        contemporaine, lumineuse et visuelle.
+      </p>
+      <p class="footer-note">Mon premier site change maintenant de style.</p>
+    </section>
   </main>
 </body>
 </html>
